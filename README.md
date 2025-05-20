@@ -1,3 +1,12 @@
+Tech Stack  
+Next js  
+MySQL  
+Drizzle ORM  
+Aiven (For Remote Database)  
+
+Aiven Downtime  
+Sunday 2:00 AM - 6:00 AM  
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

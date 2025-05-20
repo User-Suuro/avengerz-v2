@@ -5,7 +5,8 @@ Drizzle ORM
 Aiven (For Remote Database)  
 
 Aiven Downtime  
-Sunday 2:00 AM - 6:00 AM  
+UTC: Saturday 6:00PM - 10:00 PM
+PHT: Sunday 2:00 AM - 6:00 AM  
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 

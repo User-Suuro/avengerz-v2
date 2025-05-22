@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import * as React from "react"
-import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { User2Icon, Menu } from "lucide-react"
 

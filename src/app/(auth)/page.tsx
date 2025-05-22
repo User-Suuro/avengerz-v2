@@ -1,7 +1,0 @@
-export default function Auth() {
-  return (
-    <div className="font-[family-name:var(--font-geist-sans)]">
-      Auth
-    </div>
-  );
-}

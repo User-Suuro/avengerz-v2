@@ -56,11 +56,11 @@ export default function Root() {
     <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24">
       {/*-- Hero --*/}
       <div className="min-h-[calc(100dvh-133px)] flex">
-        <div className="container mx-auto flex flex-col-reverse items-center gap-8 lg:flex-row">
+        <div className="container mx-auto flex flex-col items-center gap-8 lg:flex-row sm:py-16">
           {/* Text and Button Section */}
-          <div className="relative flex w-full items-center md:flex-1">
-            <div className="text-center lg:text-left">
-              <h1 className="text-xl leading-snug font-bold tracking-tight sm:text-2xl md:text-3xl lg:text-4xl">
+          <div className="relative flex w-full items-center md:flex-1 ">
+            <div className="text-center lg:text-left mx-auto">
+              <h1 className="text-xl leading-snug font-bold tracking-tight sm:text-3xl lg:text-4xl ">
                 We are here to fulfill your Artistic Needs
               </h1>
               <div className="mt-4">
@@ -72,7 +72,7 @@ export default function Root() {
             </div>
           </div>
           {/* Marquee3D Section (Stacks below on small screens) */}
-          <div className="w-full md:flex-1">
+          <div className="w-full md:flex-1 mx-auto">
             <Marquee3D />
           </div>
         </div>

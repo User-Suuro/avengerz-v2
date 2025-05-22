@@ -134,7 +134,7 @@ export function Navbar() {
       <div className="hidden md:flex items-center justify-center py-2 ">
         <NavigationMenu>
           <NavigationMenuList>
-            {Object.entries(groupedItems).map(([category, items], index) => (
+            {Object.entries(groupedItems).map(([category, items]) => (
               <NavigationMenuItem key={category}>
                 <NavigationMenuTrigger>{category}</NavigationMenuTrigger>
                 <NavigationMenuContent>

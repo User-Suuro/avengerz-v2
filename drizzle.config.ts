@@ -4,7 +4,7 @@ import { defineConfig } from "drizzle-kit"
 
 export default defineConfig({
   dialect:"mysql",
-  schema: "./src/drizzle/schema.ts",
+  schema: "./src/drizzle/schema/*",
   out: "./src/drizzle/migrations",
   dbCredentials: {
     host:process.env.DB_HOST,

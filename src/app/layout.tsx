@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { ThemeProvider } from '@/components/themes/theme-provider'
 import { UserPrefsSettings } from '@/components/themes/prefs'
 import { Navbar } from '@/components/landing/navbar'
+import { Providers } from "./providers"
 
 import '@/styles/globals.css'
 
@@ -22,19 +23,23 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
-                <ThemeProvider
-                    defaultTheme="system"
-                    defaultColorTheme="default"
-                >  
-                    <div className="relative min-h-screen">
-                        <Navbar />
-                        <main className="flex-1">{children}</main>
-                        <div className="fixed right-10 bottom-10">
-                            <UserPrefsSettings />
+                <Providers>
+                    <ThemeProvider
+                        defaultTheme="system"
+                        defaultColorTheme="default"
+                    >  
+                        <div className="relative min-h-screen">
+                            <Navbar />
+                            <main className="flex-1">
+                                {children}
+                            </main>
+                            <div className="fixed right-10 bottom-10">
+                                <UserPrefsSettings />
+                            </div>
+                            <footer></footer>
                         </div>
-                        <footer></footer>
-                    </div>
-                </ThemeProvider>
+                    </ThemeProvider>
+                </Providers>
             </body>
         </html>
     )

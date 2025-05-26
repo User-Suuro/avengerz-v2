@@ -2,13 +2,25 @@
 
 ## Tech Stack  
 Next js  
+Shadcn & Magicui  
 MySQL  
-Drizzle ORM  
-Aiven (For Remote Database)  
+NextAuth (Session management and auth provider)  
+Drizzle-ORM (Database Management)  
+Drizzle-Zod (Forms validation)  
+Aiven (Remote Database)  
+Vercel (Website Deployment)  
+
+## DevDep  
+Prettier (Code Formatter)  
+Docker (To ensure that code works anywhere)  
+Git (Version Control)  
+Drizzle-kit (Push database schema to remote)  
+Eslint  
 
 ## Aiven Downtime  
 UTC: Saturday 6:00PM - 10:00 PM  
 PHT: Sunday 2:00 AM - 6:00 AM  
+Free tier: Shutdowns automatically when not used  
 
 ## Getting Started
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).  

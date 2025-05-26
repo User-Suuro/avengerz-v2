@@ -4,13 +4,12 @@ import { reviews } from "@/drizzle/schema/reviews";
 import { eq } from "drizzle-orm";
 import { users } from "@/drizzle/schema/users";
 
-export async function PUT(
-  _request: Request,
-  { params }: { params: { id: string } }
-) {
+type Params = { params: { id: string } }
+
+export async function PUT(request: Request, { params }: Params) {
   try {
     const id = parseInt(params.id);
-    const body = await _request.json();
+    const body = await request.json();
 
     await db
       .update(reviews)
@@ -27,10 +26,7 @@ export async function PUT(
   }
 }
 
-export async function DELETE(
-  _request: Request,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(_: Request, { params }: Params) {
   try {
     const id = parseInt(params.id);
 
@@ -48,10 +44,7 @@ export async function DELETE(
   }
 }
 
-export async function GET(
-  _request: Request,
-  { params }: { params: { id: string } }
-) {
+export async function GET(_: Request, { params }: Params) {
   try {
     const id = parseInt(params.id);
     const review = await db

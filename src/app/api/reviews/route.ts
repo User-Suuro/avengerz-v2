@@ -4,7 +4,7 @@ import { reviews } from "@/drizzle/schema/reviews";
 import { users } from "@/drizzle/schema/users";
 import { desc, eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 
 export async function POST(request: Request) {
   const session = await getServerSession(authOptions);

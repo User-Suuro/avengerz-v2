@@ -35,10 +35,6 @@ const useNavigation = () => {
     router.push("/reviews")
   }
 
-  const goToCategory = (href: string) => {
-    router.push(href)
-  }
-
   return {
     goToHome,
     goToReviews,

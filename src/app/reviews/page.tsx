@@ -7,7 +7,7 @@ import { useRef } from "react";
 import { useSession } from "next-auth/react";
 
 export default function ReviewsPage() {
-  const { data: session } = useSession({
+  useSession({
     required: true,
     onUnauthenticated() {
       redirect("/auth/signin");

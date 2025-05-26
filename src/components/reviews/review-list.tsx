@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, forwardRef, useImperativeHandle } from "react";
+import { useEffect, useState, forwardRef, useImperativeHandle, useCallback } from "react";
 import { useSession } from "next-auth/react";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/shadcn/ui/card";
 import { Button } from "@/shadcn/ui/button";
@@ -32,29 +32,26 @@ export const ReviewList = forwardRef<{ fetchReviews: () => void }>((props, ref) 
   const [isLoading, setIsLoading] = useState(true);
   const [editingReview, setEditingReview] = useState<Review | null>(null);
 
-  const fetchReviews = async () => {
+  const fetchReviews = useCallback(async () => {
     try {
       const response = await fetch("/api/reviews");
       if (!response.ok) throw new Error("Failed to fetch reviews");
       const data = await response.json();
-      console.log('Session data:', session);
-      console.log('Review data with user info:', data);
       setReviews(data);
     } catch (error) {
       console.error("Error fetching reviews:", error);
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
   useImperativeHandle(ref, () => ({
     fetchReviews
-  }));
+  }), [fetchReviews]);
 
   useEffect(() => {
-    console.log('Current session:', session);
     fetchReviews();
-  }, [session]);
+  }, [fetchReviews]);
 
   const handleDelete = async (id: number) => {
     try {
@@ -105,19 +102,11 @@ export const ReviewList = forwardRef<{ fetchReviews: () => void }>((props, ref) 
             </CardHeader>
             <CardContent>
               <p>{review.content}</p>
-              {(() => {
-                console.log('Review user data:', review.user);
-                return (
-                  <div className="text-sm text-muted-foreground mt-2">
-                    By: {review.user?.name || review.user?.email || (() => {
-                      console.log('Falling back to Anonymous for review:', review);
-                      return 'Anonymous';
-                    })()}
-                    <br />
-                    Posted on: {new Date(review.createdAt).toLocaleDateString()}
-                  </div>
-                );
-              })()}
+              <div className="text-sm text-muted-foreground mt-2">
+                By: {review.user?.name || review.user?.email || 'Anonymous'}
+                <br />
+                Posted on: {new Date(review.createdAt).toLocaleDateString()}
+              </div>
             </CardContent>
             {canModifyReview(review) && (
               <CardFooter className="gap-2">
@@ -165,4 +154,6 @@ export const ReviewList = forwardRef<{ fetchReviews: () => void }>((props, ref) 
       )}
     </div>
   );
-}); 
+});
+
+ReviewList.displayName = 'ReviewList'; 

@@ -6,16 +6,16 @@ import { users } from "@/drizzle/schema/users";
 
 export async function PUT(
   request: NextRequest,
-  context: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = parseInt(context.params.id);
+    const { id } = await params;
     const body = await request.json();
 
     await db
       .update(reviews)
       .set(body)
-      .where(eq(reviews.id, id));
+      .where(eq(reviews.id, parseInt(id)));
 
     return NextResponse.json({ message: "Review updated successfully" });
   } catch (error) {
@@ -29,14 +29,14 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  context: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = parseInt(context.params.id);
+    const { id } = await params;
 
     await db
       .delete(reviews)
-      .where(eq(reviews.id, id));
+      .where(eq(reviews.id, parseInt(id)));
 
     return NextResponse.json({ message: "Review deleted successfully" });
   } catch (error) {
@@ -50,10 +50,10 @@ export async function DELETE(
 
 export async function GET(
   request: NextRequest,
-  context: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = parseInt(context.params.id);
+    const { id } = await params;
     const review = await db
       .select({
         id: reviews.id,
@@ -70,7 +70,7 @@ export async function GET(
       })
       .from(reviews)
       .leftJoin(users, eq(reviews.userId, users.id))
-      .where(eq(reviews.id, id))
+      .where(eq(reviews.id, parseInt(id)))
       .then((res) => res[0]);
 
     if (!review) {

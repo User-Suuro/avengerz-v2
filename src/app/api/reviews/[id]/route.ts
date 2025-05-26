@@ -4,12 +4,16 @@ import { reviews } from "@/drizzle/schema/reviews";
 import { eq } from "drizzle-orm";
 import { users } from "@/drizzle/schema/users";
 
+type RouteContext = {
+  params: { id: string }
+}
+
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  context: RouteContext
 ) {
   try {
-    const id = parseInt(params.id);
+    const id = parseInt(context.params.id);
     const body = await request.json();
 
     await db
@@ -29,10 +33,10 @@ export async function PUT(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  context: RouteContext
 ) {
   try {
-    const id = parseInt(params.id);
+    const id = parseInt(context.params.id);
 
     await db
       .delete(reviews)
@@ -50,10 +54,10 @@ export async function DELETE(
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  context: RouteContext
 ) {
   try {
-    const id = parseInt(params.id);
+    const id = parseInt(context.params.id);
     const review = await db
       .select({
         id: reviews.id,

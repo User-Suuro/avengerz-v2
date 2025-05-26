@@ -28,6 +28,7 @@ export async function PUT(
 }
 
 export async function DELETE(
+  request: NextRequest,
   context: { params: { id: string } }
 ) {
   try {
@@ -48,6 +49,7 @@ export async function DELETE(
 }
 
 export async function GET(
+  request: NextRequest,
   context: { params: { id: string } }
 ) {
   try {

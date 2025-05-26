@@ -1,20 +1,16 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { db } from "@/drizzle/db";
 import { reviews } from "@/drizzle/schema/reviews";
 import { eq } from "drizzle-orm";
 import { users } from "@/drizzle/schema/users";
 
-type RouteContext = {
-  params: { id: string }
-}
-
 export async function PUT(
-  request: Request,
+  _request: Request,
   { params }: { params: { id: string } }
 ) {
   try {
-    const id = parseInt(context.params.id);
-    const body = await request.json();
+    const id = parseInt(params.id);
+    const body = await _request.json();
 
     await db
       .update(reviews)
@@ -32,11 +28,11 @@ export async function PUT(
 }
 
 export async function DELETE(
-  request: Request,
+  _request: Request,
   { params }: { params: { id: string } }
 ) {
   try {
-    const id = parseInt(context.params.id);
+    const id = parseInt(params.id);
 
     await db
       .delete(reviews)
@@ -53,11 +49,11 @@ export async function DELETE(
 }
 
 export async function GET(
-  request: Request,
+  _request: Request,
   { params }: { params: { id: string } }
 ) {
   try {
-    const id = parseInt(context.params.id);
+    const id = parseInt(params.id);
     const review = await db
       .select({
         id: reviews.id,

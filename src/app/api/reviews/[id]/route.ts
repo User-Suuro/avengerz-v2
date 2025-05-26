@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { db } from "@/drizzle/db";
 import { reviews } from "@/drizzle/schema/reviews";
 import { eq } from "drizzle-orm";
+import { users } from "@/drizzle/schema/users";
 
 export async function PUT(
   request: Request,
@@ -54,8 +55,21 @@ export async function GET(
   try {
     const id = parseInt(params.id);
     const review = await db
-      .select()
+      .select({
+        id: reviews.id,
+        title: reviews.title,
+        content: reviews.content,
+        rating: reviews.rating,
+        userId: reviews.userId,
+        createdAt: reviews.createdAt,
+        updatedAt: reviews.updatedAt,
+        user: {
+          name: users.name,
+          email: users.email,
+        },
+      })
       .from(reviews)
+      .leftJoin(users, eq(reviews.userId, users.id))
       .where(eq(reviews.id, id))
       .then((res) => res[0]);
 
